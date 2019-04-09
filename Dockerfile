@@ -55,6 +55,9 @@ RUN set -xe; \
     cd /lobsters; \
     su lobsters -c "gem install bundler --user-install"; \
     su lobsters -c "bundle install --no-cache"; \
+    su lobsters -c "gem install rails -v '5.2.0'"; \
+    su lobsters -c "bundle update rake"; \
+    su lobsters -c "bundle update rails"; \
     su lobsters -c "bundle add puma"; \
     if [ "$developer_build" != "true" ]; \
     then \
@@ -101,10 +104,10 @@ ENV MARIADB_HOST="mariadb" \
     SMTP_USERNAME="lobsters" \
     SMTP_PASSWORD="lobsters" \
     RAILS_LOG_TO_STDOUT="1" \
-    PATH="/lobsters/.gem/ruby/2.3.0/bin:$PATH"
+    PATH="/lobsters/.gem/bin:/lobsters/.gem/ruby/2.3.0/bin:$PATH"
 
 # Expose HTTP port.
 EXPOSE 3000
 
 # Execute our entry script.
-CMD ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

@@ -23,14 +23,14 @@ services:
     build:
       context: .
       args:
-        developer_build: "false"
+        developer_build: "true"
     environment:
       - MARIADB_HOST=database
       - MARIADB_PORT=3306
       - MARIADB_PASSWORD=password
       - MARIADB_USER=root
       - LOBSTER_DATABASE=lobsters
-      - LOBSTER_SITE_NAME="Example News"
+      - LOBSTER_SITE_NAME="Kindly Ops News"
       - RAILS_ENV=development
       - LOBSTER_HOSTNAME=localhost
       - VIRTUAL_HOST=localhost
